@@ -54,7 +54,12 @@ class logout_redirect extends rcube_plugin
 
             if ( $sql_result && ($sql_arr = $rcmail->db->fetch_assoc($sql_result)) ) {
                 list($name,$domain) = explode('@', $sql_arr['email']);
-                $this->redirect_url = str_replace('%d', $domain, $this->redirect_url);
+                $webmailhost = $rcmail->config->get('logout_redirect_url_prefix').$domain;
+                 if ( gethostbyname($webmailhost) != $webmailhost ) {
+            	     $this->redirect_url = str_replace('%d', $webmailhost, $this->redirect_url);
+    		     } else {
+            	     $this->redirect_url = $rcmail->config->get('logout_redirect_url_default');
+    		     }
             }
         }
 
