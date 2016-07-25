@@ -8,11 +8,18 @@
 */
 
 /*
-  $rcmail_config['logout_redirect_url'] = 'http://www.%d';
+  $config['logout_redirect_url_prefix'] = 'http://mail';
+  $config['logout_redirect_url'] = '%d';
         %d will be replaced by the default identity domain part.
-        i.e. after logout name@example.com will return http://www.example.com
+        i.e. after logout name@example.com will return http://mail.example.com
+        if mail.example.com doesn't exist will return default url - http://mail.example.com/
+  $config['logout_redirect_url_default'] = 'http://mail.example.com/'; 
 */
 
-$config['logout_redirect_url'] = 'http://www.%d/';
+
+$config['logout_redirect_url_prefix'] = 'http://mail';
+$config['logout_redirect_url'] = '%d/';
+
+$config['logout_redirect_url_default'] = 'http://mail.example.net/';
 
 ?>
